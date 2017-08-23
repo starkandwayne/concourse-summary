@@ -1,9 +1,10 @@
 ---
 applications:
-  - name: concourse-summary-crystal
-    memory: 256M
+  - name: concourse-summary
+    memory: 75M # crystal http server seems to take up to 60mb, but then stabalizes, add padding so the app doesn't keep "crashing"
+    domain: starkandwayne.com
     buildpack: https://github.com/dgodd/crystal-buildpack.git
     env:
-      HOSTS: ci.concourse.ci appdog.ci.cf-app.com buildpacks.ci.cf-app.com diego.ci.cf-app.com capi.ci.cf-app.com ci.shoetree.io?login_team=main
-      CS_GROUPS: '{"test":{"buildpacks.ci.cf-app.com":{"binary-builder":["automated-builds","manual-builds"],"brats":null},"diego.ci.cf-app.com":{"greenhouse":null},"capi.ci.cf-app.com":null}}'
-      SKIP_SSL_VALIDATION: "true"
+      HOSTS: ci.starkandwayne.com
+      CS_GROUPS: '{}'
+      SKIP_SSL_VALIDATION: false
